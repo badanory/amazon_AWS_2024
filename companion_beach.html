@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>button tag</title>
+    <style>
+        button {
+            font-size: 20px; /* 글씨 크기 */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            color: black; /* 기본 글씨 색상 */
+        }
+
+        button img {
+            width: 500px; /* 이미지 너비 */
+            height: auto; /* 이미지 높이 자동 조절 */
+            margin-right: 10px; /* 이미지와 텍스트 사이 간격 */
+        }
+
+        .orange-text {
+            color: orange; /* 주황색 */
+        }
+
+        .red-text {
+            color: red; /* 빨간색 */
+        }
+    </style>
+    <script>
+        function decreaseCount() {
+            var buttonText = document.getElementById("countButton").textContent;
+            var currentCount = parseInt(buttonText.match(/\d+/)[0]);
+
+            if (currentCount > 0) {
+                currentCount--;
+
+                var buttonElement = document.getElementById("countButton");
+
+                // 잔여 인원에 따른 색상 변경
+                if (currentCount <= 280) {
+                    buttonElement.classList.remove("orange-text");
+                    buttonElement.classList.add("red-text");
+                } else if (currentCount <= 290) {
+                    buttonElement.classList.remove("red-text");
+                    buttonElement.classList.add("orange-text");
+                } else {
+                    buttonElement.classList.remove("orange-text", "red-text");
+                }
+
+                buttonElement.innerHTML = '<img src="./사진/beach.jpg" alt="버튼"> 잔여인원 ' + currentCount + '/300';
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="countButton" type="button" onclick="decreaseCount()">
+        <img src="./사진/beach.jpg" alt="버튼">
+        잔여인원 300/300
+    </button>
+</body>
+</html>

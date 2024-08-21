@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색창</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+            flex-direction: column;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 70%;
+            max-width: 800px;
+            border: 2px solid #ccc;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        .search-icon-left {
+            padding: 10px;
+            background-color: white;
+            border-right: 2px solid #fff;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 24px;
+            color: green;
+        }
+        .search-bar {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+            font-size: 18px;
+        }
+        .search-button {
+            padding: 10px;
+            background-color: white;
+            border-left: 2px solid #ffffff;
+            cursor: pointer;
+        }
+        .search-button img {
+            width: 30px;
+            height: 30px;
+        }
+        .results {
+            width: 70%;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+        .result-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            transition: font-size 0.3s ease, font-weight 0.3s ease; /* 폰트 크기와 굵기 변화를 부드럽게 설정 */
+        }
+        .result-item:hover {
+            font-weight: bold; /* 마우스를 올려놓으면 폰트 굵어짐 */
+            font-size: 20px; /* 마우스를 올려놓으면 폰트 크기 증가 */
+        }
+        #dropdownMenu {
+            display: none;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 70%;
+            max-width: 800px;
+        }
+        #dropdownMenu .dropdown-item {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+        }
+        #dropdownMenu .dropdown-item:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="search-container">
+    <div class="search-icon-left">B</div>
+    <input type="text" id="searchInput" class="search-bar" placeholder="검색어를 입력하세요">
+    <button class="search-button">
+        <img src="./사진/search.svg" alt="Search Icon">
+    </button>
+</div>
+
+<div id="dropdownMenu">
+    <div class="dropdown-item">속초 해변</div>
+    <div class="dropdown-item">양양 해변</div>
+</div>
+
+
+<script>
+    // JavaScript로 검색기 입력을 처리
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const inputValue = this.value.toLowerCase();
+        const dropdown = document.getElementById('dropdownMenu');
+        const items = dropdown.getElementsByClassName('dropdown-item');
+
+        let hasMatch = false;
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            if (item.textContent.toLowerCase().includes(inputValue)) {
+                item.style.display = 'block';
+                hasMatch = true;
+            } else {
+                item.style.display = 'none';
+            }
+        }
+
+        if (inputValue && hasMatch) {
+            dropdown.style.display = 'block'; // 드롭다운 메뉴 표시
+        } else {
+            dropdown.style.display = 'none'; // 드롭다운 메뉴 숨김
+        }
+    });
+</script>
+</body>
+</html>

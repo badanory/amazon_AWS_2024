@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>프로필</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .profile-container {
+            background-color: white;
+            width: 800px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-level{
+            font-size: 12px;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-header img {
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            margin-right: 15px;
+        }
+        .profile-header .username {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+        .profile-header .logout {
+            font-size: 14px;
+            color: #555;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .profile-header .logout:hover {
+            text-decoration: underline;
+        }
+        .profile-header .profile-info {
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+        }
+        .profile-balance {
+            font-size: 18px;
+            color: #03c75a;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .membership {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        .membership img {
+            margin-left: 5px;
+            width: 25px;
+            height: 15px;
+        }
+        .profile-footer {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-bottom: 20px;
+        }
+        .profile-footer div {
+            font-size: 14px;
+            cursor: pointer;
+            color: #333;
+        }
+        .profile-footer div:hover {
+            color: #0078d7;
+        }
+        .reservation-list {
+            margin-bottom: 20px;
+        }
+        .reservation-list h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .reservation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            color: #333;
+        }
+        .cancel-button {
+            font-size: 14px;
+            color: #ff4d4d;
+            cursor: pointer;
+        }
+        .cancel-button:hover {
+            text-decoration: underline;
+        }
+        .mission-list h5 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .mission-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #333;
+            padding: 10px 0;
+        }
+        .mission-item img {
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <div class="profile-level">안녕하세요,
+        <br>버디버디님 현재 <ins>VIP</ins> 등급입니다.
+    </div>
+    <div class="profile-header">
+        <img src="./사진/beaver.jpg" alt="프로필 이미지">
+        <div>
+            <span class="username">버디버디 님</span>
+            <span class="logout">로그아웃</span>
+            <div class="profile-info">buddybuddy0821@naver.com</div>
+        </div>
+    </div>
+    <div class="profile-balance">
+        MY POINT 31,120P
+    </div>
+    <div class="membership">
+        보유 상품권: 1장
+    </div>
+
+    <div class="profile-footer">
+        <div>전체 예약 목록</div>
+        <div>회원 정보</div>
+    </div>
+
+    <div class="reservation-list">
+        <h4>금일 예약 목록</h4>
+        <hr>
+        <div class="reservation-item">
+            안목 해변 
+            <div>
+                <span>2024.08.21&nbsp;&nbsp;</span> 
+                <span class="cancel-button">취소하기</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mission-list">
+        <h5>나의 미션</h5>
+        <hr>
+        <div class="mission-item">
+            <img src="./사진/cigar.jpg" width="70px" alt="미션 이미지">
+            담배꽁초 10개 줍기
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.cancel-button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            const reservationItem = this.closest('.reservation-item');
+            reservationItem.remove();
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>룰렛</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f1f1f1;
+        }
+        .roulette-container {
+            text-align: center;
+            position: relative;
+        }
+        .roulette-title {
+            color: #55616c;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+        .roulette-wheel {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 10px solid #ddd;
+            background: conic-gradient(
+                #508A93 0% 25%, 
+                white 25% 50%, 
+                #78C1CB 50% 75%, 
+                white 75% 100%
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .roulette-wheel:before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .roulette-wheel .segment {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+        }
+        .segment-1 { transform: rotate(45deg) translateY(-120px); } /* 글씨를 뒤로 밀기 위해 translateY 조정 */
+        .segment-2 { transform: rotate(135deg) translateY(-120px); }
+        .segment-3 { transform: rotate(225deg) translateY(-120px); }
+        .segment-4 { transform: rotate(315deg) translateY(-120px); }
+
+        .pointer {
+            position: absolute;
+            top: calc(45% - 150px - 20px); /* 룰렛 휠의 위쪽 중앙에 위치 */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 30px solid #f2703f;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .start-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 80px;
+            height: 80px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .notification {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .notification .toggle {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="roulette-container">
+    <div class="roulette-title">오늘의 미션은?</div>
+
+    <div class="roulette-wheel" id="wheel">
+        <div class="segment segment-1">캔 10개 줍기</div>
+        <div class="segment segment-2">페트병 10개 줍기</div>
+        <div class="segment segment-3">일반쓰레기 10개 줍기</div>
+        <div class="segment segment-4">담배꽁초 10개 줍기</div>
+    </div>
+    <div class="pointer"></div> <!-- pointer는 휠 위에 겹치도록 배치 -->
+    <div class="start-button" id="startBtn">START</div>
+    <div class="notification">
+        <b>함께 미션을 완수하고, 자연을 아껴요!</b>
+    </div>
+    <div id="result"></div>
+</div>
+
+<script>
+    document.getElementById('startBtn').addEventListener('click', function() {
+        const wheel = document.getElementById('wheel');
+        const randomDegree = Math.floor(Math.random() * 360) + 1440; // 최소 4바퀴 이상 돌도록 설정
+        wheel.style.transform = `rotate(${randomDegree}deg)`;
+
+        // 룰렛이 멈출 때까지 기다렸다가 결과를 계산
+        setTimeout(function() {
+            const finalDegree = (randomDegree % 360) - 90; // 룰렛의 최종 위치 (0 ~ 359도 사이)
+            let resultText = '';
+
+            if (finalDegree >= 0 && finalDegree < 90) {
+                resultText = "캔 10개 줍기";
+            } else if (finalDegree >= 90 && finalDegree < 180) {
+                resultText = "페트병 10개 줍기";
+            } else if (finalDegree >= 180 && finalDegree < 270) {
+                resultText = "일반쓰레기 10개 줍기";
+            } else {
+                resultText = "담배꽁초 10개 줍기";
+            }
+
+            // 결과를 화면에 표시
+            document.getElementById('result').textContent = `결과: ${resultText}`;
+        }, 5000); // 5초 후에 결과를 표시 (회전이 완료된 후)
+    });
+</script>
+
+</body>
+</html>

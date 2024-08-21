@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색창</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+            flex-direction: column;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            width: 70%;
+            max-width: 800px;
+            border: 2px solid #ccc;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        .search-icon-left {
+            padding: 10px;
+            background-color: white;
+            border-right: 2px solid #fff;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 24px;
+            color: green;
+        }
+        .search-bar {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+            font-size: 18px;
+        }
+        .search-button {
+            padding: 10px;
+            background-color: white;
+            border-left: 2px solid #ffffff;
+            cursor: pointer;
+        }
+        .search-button img {
+            width: 30px;
+            height: 30px;
+        }
+        .results {
+            width: 70%;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+        .result-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            transition: font-size 0.3s ease, font-weight 0.3s ease; /* 폰트 크기와 굵기 변화를 부드럽게 설정 */
+        }
+        .result-item:hover {
+            font-weight: bold; /* 마우스를 올려놓으면 폰트 굵어짐 */
+            font-size: 20px; /* 마우스를 올려놓으면 폰트 크기 증가 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="search-container">
+    <div class="search-icon-left">B</div>
+    <input type="text" class="search-bar" placeholder="">
+    <button class="search-button">
+        <img src="./사진/search.svg" alt="Search Icon">
+    </button>
+</div>
+
+<div class="results">
+    <div class="result-item">속초 해변</div>
+    <div class="result-item">양양 해변</div>
+</div>
+
+<script>
+    // JavaScript로 검색기 입력을 처리
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const inputValue = this.value;
+        const dropdown = document.getElementById('dropdownMenu');
+        if (inputValue === '강릉해변') {
+            dropdown.style.display = 'block'; // 드롭다운 메뉴 표시
+        } else {
+            dropdown.style.display = 'none'; // 드롭다운 메뉴 숨김
+        }
+    });
+</script>
+</body>
+</html>
+
+</body>
+</html>

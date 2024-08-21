@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할인 정보</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .search-container {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .search-bar {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            flex-grow: 1;
+        }
+        .search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .results {
+            padding: 20px;
+        }
+        .result-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            transition: font-size 20px; /* 폰트 굵기가 부드럽게 변화하도록 설정 */
+        }
+        .result-item:hover {
+            font-weight: bold; /* 마우스를 올려놓으면 폰트 굵어짐 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>오늘 어디서 % 할인</h1>
+</div>
+
+<div class="search-container">
+    <input type="text" class="search-bar" placeholder="검색어를 입력하세요">
+    <button class="search-button">🔍</button>
+</div>
+
+<div class="results">
+    <div class="result-item">속초 해변</div>
+    <div class="result-item">양양 해변</div>
+</div>
+
+</body>
+</html>
